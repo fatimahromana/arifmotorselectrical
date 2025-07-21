@@ -674,7 +674,7 @@ export default function ArifMotorsLanding() {
                   </div>
                   <div>
                     <div className="font-semibold text-white">Phone</div>
-                    <div className="text-blue-200">+63 XXX XXX XXXX</div>
+                    <div className="text-blue-200">+63 949 573 8232</div>
                   </div>
                 </div>
                 
