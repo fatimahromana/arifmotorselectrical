@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Zap, Wrench, Package, Info, MapPin, Menu, X } from 'lucide-react';
 
-export default function ArifMotorsLanding() {
+const ArifMotorsLanding = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -21,7 +21,7 @@ export default function ArifMotorsLanding() {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [words.length]);
+  }, []);
 
   const dropdownItems = [
     { icon: Zap, text: 'Understanding Your Parts', color: 'text-blue-800' },
@@ -105,7 +105,7 @@ export default function ArifMotorsLanding() {
                     >
                       {words[currentWordIndex]}
                     </span>
-                    tailored to meet your needs.
+                    {' tailored to meet your needs.'}
                   </span>
                 </div>
               </div>
@@ -134,7 +134,7 @@ export default function ArifMotorsLanding() {
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="w-full bg-gradient-to-r from-blue-800 to-blue-900 text-white px-8 py-5 rounded-2xl font-semibold text-lg flex items-center justify-between hover:from-blue-900 hover:to-blue-950 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 active:translate-y-0"
               >
-                Find What You're Looking For
+                Find What You&apos;re Looking For
                 <ChevronDown
                   className={`w-6 h-6 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
                 />
@@ -409,13 +409,13 @@ export default function ArifMotorsLanding() {
             <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 border border-gray-100">
               <div className="flex items-center mb-6">
                 <div className="flex text-yellow-400">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-xl">★</span>
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <span key={star} className="text-xl">★</span>
                   ))}
                 </div>
               </div>
               <p className="text-gray-700 text-lg leading-relaxed mb-6 italic">
-                "Arif Motors saved my business when our main motor failed. Their quick response and expert rewinding service got us back up and running in no time. Highly professional!"
+                &quot;Arif Motors saved my business when our main motor failed. Their quick response and expert rewinding service got us back up and running in no time. Highly professional!&quot;
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-800 to-blue-900 rounded-full flex items-center justify-center mr-4">
@@ -432,13 +432,13 @@ export default function ArifMotorsLanding() {
             <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 border border-gray-100">
               <div className="flex items-center mb-6">
                 <div className="flex text-yellow-400">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-xl">★</span>
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <span key={star} className="text-xl">★</span>
                   ))}
                 </div>
               </div>
               <p className="text-gray-700 text-lg leading-relaxed mb-6 italic">
-                "Been coming here for over 10 years. They have the best electrical supplies in town and their prices are very reasonable. The staff is knowledgeable and helpful."
+                &quot;Been coming here for over 10 years. They have the best electrical supplies in town and their prices are very reasonable. The staff is knowledgeable and helpful.&quot;
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-gradient-to-r from-red-700 to-red-800 rounded-full flex items-center justify-center mr-4">
@@ -455,13 +455,13 @@ export default function ArifMotorsLanding() {
             <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 border border-gray-100">
               <div className="flex items-center mb-6">
                 <div className="flex text-yellow-400">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-xl">★</span>
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <span key={star} className="text-xl">★</span>
                   ))}
                 </div>
               </div>
               <p className="text-gray-700 text-lg leading-relaxed mb-6 italic">
-                "Excellent service! They diagnosed and fixed our water pump motor perfectly. The quality of work is outstanding and they stand behind their repairs."
+                &quot;Excellent service! They diagnosed and fixed our water pump motor perfectly. The quality of work is outstanding and they stand behind their repairs.&quot;
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-800 to-blue-900 rounded-full flex items-center justify-center mr-4">
@@ -478,13 +478,13 @@ export default function ArifMotorsLanding() {
             <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 border border-gray-100">
               <div className="flex items-center mb-6">
                 <div className="flex text-yellow-400">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-xl">★</span>
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <span key={star} className="text-xl">★</span>
                   ))}
                 </div>
               </div>
               <p className="text-gray-700 text-lg leading-relaxed mb-6 italic">
-                "Fast and reliable service. When our industrial motor broke down, they had it fixed within 2 days. Their expertise in motor rewinding is unmatched."
+                &quot;Fast and reliable service. When our industrial motor broke down, they had it fixed within 2 days. Their expertise in motor rewinding is unmatched.&quot;
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-gradient-to-r from-red-700 to-red-800 rounded-full flex items-center justify-center mr-4">
@@ -501,13 +501,13 @@ export default function ArifMotorsLanding() {
             <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 border border-gray-100">
               <div className="flex items-center mb-6">
                 <div className="flex text-yellow-400">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-xl">★</span>
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <span key={star} className="text-xl">★</span>
                   ))}
                 </div>
               </div>
               <p className="text-gray-700 text-lg leading-relaxed mb-6 italic">
-                "Great selection of electrical parts and very competitive prices. The owner is honest and provides good advice on which parts to buy for specific applications."
+                &quot;Great selection of electrical parts and very competitive prices. The owner is honest and provides good advice on which parts to buy for specific applications.&quot;
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-800 to-blue-900 rounded-full flex items-center justify-center mr-4">
@@ -524,13 +524,13 @@ export default function ArifMotorsLanding() {
             <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 border border-gray-100">
               <div className="flex items-center mb-6">
                 <div className="flex text-yellow-400">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-xl">★</span>
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <span key={star} className="text-xl">★</span>
                   ))}
                 </div>
               </div>
               <p className="text-gray-700 text-lg leading-relaxed mb-6 italic">
-                "They've been serving our family business for years. Always dependable, fair pricing, and quality workmanship. Highly recommend for any electrical motor needs."
+                &quot;They&apos;ve been serving our family business for years. Always dependable, fair pricing, and quality workmanship. Highly recommend for any electrical motor needs.&quot;
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-gradient-to-r from-red-700 to-red-800 rounded-full flex items-center justify-center mr-4">
@@ -762,4 +762,6 @@ export default function ArifMotorsLanding() {
       </footer>
     </div>
   );
-}
+};
+
+export default ArifMotorsLanding;
