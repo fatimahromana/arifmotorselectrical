@@ -10,13 +10,18 @@ const ArifMotorsLanding = () => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
 
-  const words = ['supplies', 'services', 'repairs', 'parts'];
+  const wordData = [
+    { word: 'supplies', sentence: 'tailored to meet your needs.' },
+    { word: 'services', sentence: 'designed for your success.' },
+    { word: 'repairs', sentence: 'that restore your equipment.' },
+    { word: 'parts', sentence: 'built for lasting performance.' }
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
       setIsVisible(false);
       setTimeout(() => {
-        setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+        setCurrentWordIndex((prevIndex) => (prevIndex + 1) % wordData.length);
         setIsVisible(true);
       }, 300);
     }, 3000);
@@ -42,23 +47,23 @@ const ArifMotorsLanding = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
-      {/* Header with enhanced styling */}
-      <div className="bg-gradient-to-r from-blue-800 to-blue-900 shadow-lg sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-3">
+    <div className="min-h-screen w-full bg-white flex flex-col" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
+      {/* Header */}
+      <header className="bg-gradient-to-r from-blue-800 to-blue-900 shadow-lg sticky top-0 z-50 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <h1 className="text-center text-sm font-semibold text-white tracking-wider uppercase">
             ARIF MOTORS ELECTRICAL
           </h1>
         </div>
-      </div>
+      </header>
 
-      {/* Navigation with improved styling */}
-      <nav className="max-w-7xl mx-auto px-4 py-3 bg-white/80 backdrop-blur-sm">
+      {/* Navigation */}
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 bg-white/80 backdrop-blur-sm w-full">
         <div className="flex items-center justify-between">
           <div className="text-3xl font-bold text-blue-800 tracking-tight"></div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-10">
+          <div className="hidden md:flex items-center space-x-8 lg:space-x-10">
             {navItems.map((item) => (
               <Link
                 key={item.name}
@@ -75,6 +80,7 @@ const ArifMotorsLanding = () => {
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden text-gray-700 hover:text-blue-800 transition-colors duration-300 p-2 rounded-lg hover:bg-blue-50 touch-manipulation"
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -82,7 +88,7 @@ const ArifMotorsLanding = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-6 py-4 border-t border-gray-200 bg-white rounded-lg shadow-lg">
+          <div className="md:hidden mt-6 py-4 border-t border-gray-200 bg-white rounded-lg shadow-lg w-full">
             {navItems.map((item) => (
               <Link
                 key={item.name}
@@ -96,59 +102,64 @@ const ArifMotorsLanding = () => {
         )}
       </nav>
 
-      {/* Hero Section with enhanced design */}
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      {/* Hero Section - Fixed Typography */}
+      <section className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 py-8 sm:py-12 flex-grow">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center">
           {/* Left Content */}
-          <div className="space-y-10">
+          <div className="space-y-8 sm:space-y-10">
             <div>
-              {/* Enhanced badge */}
-              <div className="mb-6">
-                <div className="inline-flex items-center bg-gradient-to-r from-blue-50 to-blue-100 rounded-full px-6 py-2 border border-blue-200">
-                  <span className="text-blue-700 text-sm font-semibold">
+              {/* Badge */}
+              <div className="mb-8">
+                <div className="inline-flex items-center bg-gradient-to-r from-blue-50 to-blue-100 rounded-full px-5 sm:px-6 py-3 border border-blue-200">
+                  <span className="text-blue-700 text-sm sm:text-sm font-semibold leading-relaxed">
                     Explore our range of{' '}
                     <span
                       className={`font-bold transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
-                      style={{ display: 'inline-block', minWidth: '60px' }}
                     >
-                      {words[currentWordIndex]}
+                      {wordData[currentWordIndex].word}
                     </span>
-                    {' tailored to meet your needs.'}
+                    {' '}
+                    <span
+                      className={`transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+                    >
+                      {wordData[currentWordIndex].sentence}
+                    </span>
                   </span>
                 </div>
               </div>
 
-              {/* Main heading - all blue as requested */}
-              <h2 className="text-4xl lg:text-5xl font-bold text-blue-800 leading-tight mb-6 tracking-tight">
-                Trusted Repair Services and Electrical Supplies
+              {/* Main heading - Significantly improved mobile typography */}
+              <h2 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-blue-800 leading-[1.2] sm:leading-tight mb-8 sm:mb-6 tracking-tight">
+                Trusted Repair Rewinding Services and Electrical Supplies
               </h2>
 
-              {/* Enhanced subheading */}
-              <div className="bg-gradient-to-r from-red-700 to-red-800 bg-clip-text text-transparent">
-                <p className="text-xl font-bold mb-4">
-                  Specialized in Motor Rewinding Since 1999
+              {/* Subheading - Better spacing and sizing */}
+              <div className="bg-gradient-to-r from-red-700 to-red-800 bg-clip-text text-transparent mb-8">
+                <p className="text-xl sm:text-lg md:text-xl font-bold leading-relaxed">
+                  Specialized in Motor Rewinding Since 1996
                 </p>
               </div>
 
-              {/* Enhanced description */}
-              <p className="text-lg text-gray-700 leading-relaxed font-light">
+              {/* Description - Improved readability */}
+              <p className="text-base sm:text-base md:text-lg text-gray-700 leading-[1.6] font-light">
                 Serving with reliability, technical precision, and decades of experience. Your trusted partner for all electrical motor needs.
               </p>
             </div>
 
-            {/* Enhanced Dropdown Section */}
+            {/* Dropdown Section - Better mobile touch target */}
             <div className="relative">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="w-full bg-gradient-to-r from-blue-800 to-blue-900 text-white px-8 py-5 rounded-2xl font-semibold text-lg flex items-center justify-between hover:from-blue-900 hover:to-blue-950 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 active:translate-y-0 touch-manipulation"
+                className="w-full bg-gradient-to-r from-blue-800 to-blue-900 text-white px-8 sm:px-8 py-5 sm:py-5 rounded-2xl font-semibold text-lg sm:text-lg flex items-center justify-between hover:from-blue-900 hover:to-blue-950 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 active:translate-y-0 touch-manipulation"
+                aria-expanded={isDropdownOpen}
               >
-                Find What You&apos;re Looking For
+                Find What You're Looking For
                 <ChevronDown
-                  className={`w-6 h-6 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
+                  className={`w-6 sm:w-6 h-6 sm:h-6 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
                 />
               </button>
 
-              {/* Enhanced Dropdown Menu */}
+              {/* Dropdown Menu - Better mobile spacing */}
               {isDropdownOpen && (
                 <div className="absolute top-full left-0 right-0 mt-3 bg-white border border-gray-200 rounded-2xl shadow-2xl z-40 overflow-hidden backdrop-blur-sm">
                   {dropdownItems.map((item, index) => {
@@ -157,12 +168,12 @@ const ArifMotorsLanding = () => {
                       <Link
                         key={index}
                         href={item.href}
-                        className="flex items-center px-8 py-5 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 transition-all duration-300 border-b border-gray-100 last:border-b-0 group touch-manipulation"
+                        className="flex items-center px-8 sm:px-8 py-5 sm:py-5 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 transition-all duration-300 border-b border-gray-100 last:border-b-0 group touch-manipulation"
                       >
-                        <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center mr-4 group-hover:bg-white transition-colors duration-300">
-                          <IconComponent className={`w-5 h-5 ${item.color} group-hover:scale-110 transition-transform duration-300`} />
+                        <div className="w-12 sm:w-10 h-12 sm:h-10 rounded-full bg-gray-100 flex items-center justify-center mr-4 sm:mr-4 group-hover:bg-white transition-colors duration-300">
+                          <IconComponent className={`w-6 sm:w-5 h-6 sm:h-5 ${item.color} group-hover:scale-110 transition-transform duration-300`} />
                         </div>
-                        <span className="text-gray-800 font-medium text-lg group-hover:text-blue-800 transition-colors duration-300">
+                        <span className="text-gray-800 font-medium text-lg sm:text-lg group-hover:text-blue-800 transition-colors duration-300">
                           {item.text}
                         </span>
                       </Link>
@@ -172,84 +183,83 @@ const ArifMotorsLanding = () => {
               )}
             </div>
 
-            {/* Enhanced Stats */}
-            <div className="grid grid-cols-3 gap-6 pt-10 border-t border-gray-200">
+            {/* Stats - Better mobile hierarchy */}
+            <div className="grid grid-cols-3 gap-6 sm:gap-6 pt-10 sm:pt-10 border-t border-gray-200">
               <div className="text-center group">
-                <div className="text-4xl font-bold text-blue-800 mb-2 group-hover:scale-110 transition-transform duration-300">25+</div>
-                <div className="text-gray-600 font-medium text-sm">Years Experience</div>
+                <div className="text-3xl sm:text-3xl md:text-4xl font-bold text-blue-800 mb-3 group-hover:scale-110 transition-transform duration-300">29+</div>
+                <div className="text-gray-600 font-medium text-sm sm:text-sm leading-tight">Years Experience</div>
               </div>
               <div className="text-center group">
-                <div className="text-4xl font-bold text-red-700 mb-2 group-hover:scale-110 transition-transform duration-300">1000+</div>
-                <div className="text-gray-600 font-medium text-sm">Motors Repaired</div>
+                <div className="text-3xl sm:text-3xl md:text-4xl font-bold text-red-700 mb-3 group-hover:scale-110 transition-transform duration-300">1000+</div>
+                <div className="text-gray-600 font-medium text-sm sm:text-sm leading-tight">Motors Repaired</div>
               </div>
               <div className="text-center group">
-                <div className="text-4xl font-bold text-blue-800 mb-2 group-hover:scale-110 transition-transform duration-300">2</div>
-                <div className="text-gray-600 font-medium text-sm">Branches</div>
+                <div className="text-3xl sm:text-3xl md:text-4xl font-bold text-blue-800 mb-3 group-hover:scale-110 transition-transform duration-300">2</div>
+                <div className="text-gray-600 font-medium text-sm sm:text-sm leading-tight">Branches</div>
               </div>
             </div>
           </div>
 
-          {/* Right Image with clean styling */}
-          <div className="relative">
+          {/* Right Image - hidden on mobile */}
+          <div className="relative hidden md:block">
             <img
               src="/arif.png"
               alt="Electrical Services"
-              className="w-full h-auto rounded-3xl hidden md:block"
+              className="w-full h-auto rounded-3xl object-cover max-h-[400px] sm:max-h-[500px]"
             />
-
-            {/* Enhanced Floating Elements */}
-            <div className="absolute -top-6 -left-6 w-12 h-12 bg-gradient-to-r from-red-700 to-red-800 rounded-full animate-pulse shadow-lg"></div>
-            <div className="absolute -bottom-6 -right-6 w-10 h-10 bg-gradient-to-r from-blue-800 to-blue-900 rounded-full animate-bounce shadow-lg"></div>
-            <div className="absolute top-1/2 -right-10 w-6 h-6 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full animate-ping shadow-lg"></div>
+            {/* Floating Elements */}
+            <div className="absolute -top-4 sm:-top-6 -left-4 sm:-left-6 w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-r from-red-700 to-red-800 rounded-full animate-pulse shadow-lg"></div>
+            <div className="absolute -bottom-4 sm:-bottom-6 -right-4 sm:-right-6 w-8 sm:w-10 h-8 sm:h-10 bg-gradient-to-r from-blue-800 to-blue-900 rounded-full animate-bounce shadow-lg"></div>
+            <div className="absolute top-1/2 -right-8 sm:-right-10 w-5 sm:w-6 h-5 sm:h-6 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full animate-ping shadow-lg"></div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Service Overview Section */}
-      <div className="bg-gradient-to-b from-white to-gray-50 py-20">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="bg-gradient-to-b from-white to-gray-50 py-8 sm:py-12 lg:py-20 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center bg-gradient-to-r from-red-50 to-blue-50 rounded-full px-6 py-2 border border-red-200 mb-6">
-              <span className="text-red-700 text-sm font-semibold">Our Core Services</span>
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <div className="inline-flex items-center bg-gradient-to-r from-red-50 to-blue-50 rounded-full px-4 sm:px-6 py-2 border border-red-200 mb-4 sm:mb-6">
+              <span className="text-red-700 text-xs sm:text-sm font-semibold">Our Core Services</span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-blue-800 mb-6 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-blue-800 mb-4 sm:mb-6 tracking-tight">
               Complete Electrical Motor Solutions
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              From precision motor rewinding to quality electrical supplies, we provide comprehensive services to keep your equipment running smoothly
+            <p className="text-sm sm:text-base md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              From precision motor rewinding to quality electrical supplies, we provide comprehensive solutions to keep your equipment running smoothly.
             </p>
           </div>
 
           {/* Services Grid */}
-          <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12 lg:mb-16">
             {/* Motor Rewinding */}
             <div className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group">
-              <div className="h-48 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center relative overflow-hidden">
+              <div className="h-40 sm:h-48 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center relative overflow-hidden">
                 <img
                   src="/1.jpg"
                   alt="Motor Rewinding Service"
-                  className="w气体-full h-full object-cover"
+                  className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-blue-800/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-blue-800 mb-3 flex items-center">
-                  <div className="w-6 h-6 bg-white rounded flex items-center justify-center mr-2">
-                    <Wrench className="w-4 h-4 text-blue-800" />
+              <div className="p-4 sm:p-6">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-blue-800 mb-3 flex items-center">
+                  <div className="w-5 sm:w-6 h-5 sm:h-6 bg-white rounded flex items-center justify-center mr-2">
+                    <Wrench className="w-3 sm:w-4 h-3 sm:h-4 text-blue-800" />
                   </div>
-                  Motors We Specialize In
+                  Motor Rewinding
                 </h3>
-                <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                <p className="text-gray-700 text-xs sm:text-sm leading-relaxed mb-4">
                   Professional motor rewinding services for various types of electric motors and appliances.
                 </p>
                 <Link
                   href="/services#motor-repair-section"
-                  className="flex items-center text-red-700 font-semibold text-sm hover:text-red-800 transition-colors duration-300 group touch-manipulation"
+                  className="flex items-center text-red-700 font-semibold text-xs sm:text-sm hover:text-red-800 transition-colors duration-300 group touch-manipulation"
                 >
                   Learn More
                   <svg
-                    className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                    className="w-3 sm:w-4 h-3 sm:h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -262,7 +272,7 @@ const ArifMotorsLanding = () => {
 
             {/* Washing Machine & Fan Repairs */}
             <div className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group">
-              <div className="h-48 bg-gradient-to-br from-red-100 to-red-200 flex items-center justify-center relative overflow-hidden">
+              <div className="h-40 sm:h-48 bg-gradient-to-br from-red-100 to-red-200 flex items-center justify-center relative overflow-hidden">
                 <img
                   src="/2.jpg"
                   alt="Appliance Repair Service"
@@ -270,23 +280,23 @@ const ArifMotorsLanding = () => {
                 />
                 <div className="absolute inset-0 bg-red-800/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-red-700 mb-3 flex items-center">
-                  <div className="w-6 h-6 bg-white rounded flex items-center justify-center mr-2">
-                    <Package className="w-4 h-4 text-red-700" />
+              <div className="p-4 sm:p-6">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-red-700 mb-3 flex items-center">
+                  <div className="w-5 sm:w-6 h-5 sm:h-6 bg-white rounded flex items-center justify-center mr-2">
+                    <Package className="w-3 sm:w-4 h-3 sm:h-4 text-red-700" />
                   </div>
-                  Household Appliances We Service
+                  Appliance Repairs
                 </h3>
-                <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                <p className="text-gray-700 text-xs sm:text-sm leading-relaxed mb-4">
                   Expert repair services for household appliances including washing machines and electric fans.
                 </p>
                 <Link
                   href="/services#appliance-repair-section"
-                  className="flex items-center text-red-700 font-semibold text-sm hover:text-red-800 transition-colors duration-300 group touch-manipulation"
+                  className="flex items-center text-red-700 font-semibold text-xs sm:text-sm hover:text-red-800 transition-colors duration-300 group touch-manipulation"
                 >
                   Learn More
                   <svg
-                    className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                    className="w-3 sm:w-4 h-3 sm:h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -299,7 +309,7 @@ const ArifMotorsLanding = () => {
 
             {/* Electrical Supply Sales */}
             <div className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group">
-              <div className="h-48 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center relative overflow-hidden">
+              <div className="h-40 sm:h-48 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center relative overflow-hidden">
                 <img
                   src="/3.jpg"
                   alt="Electrical Supplies"
@@ -307,23 +317,23 @@ const ArifMotorsLanding = () => {
                 />
                 <div className="absolute inset-0 bg-blue-800/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-blue-800 mb-3 flex items-center">
-                  <div className="w-6 h-6 bg-white rounded flex items-center justify-center mr-2">
-                    <Zap className="w-4 h-4 text-blue-800" />
+              <div className="p-4 sm:p-6">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-blue-800 mb-3 flex items-center">
+                  <div className="w-5 sm:w-6 h-5 sm:h-6 bg-white rounded flex items-center justify-center mr-2">
+                    <Zap className="w-3 sm:w-4 h-3 sm:h-4 text-blue-800" />
                   </div>
-                  Available Electrical Products
+                  Electrical Supplies
                 </h3>
-                <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                <p className="text-gray-700 text-xs sm:text-sm leading-relaxed mb-4">
                   Wide selection of quality electrical components and motor parts for all your needs.
                 </p>
                 <Link
                   href="/electrical-supplies#available-products"
-                  className="flex items-center text-red-700 font-semibold text-sm hover:text-red-800 transition-colors duration-300 group touch-manipulation"
+                  className="flex items-center text-red-700 font-semibold text-xs sm:text-sm hover:text-red-800 transition-colors duration-300 group touch-manipulation"
                 >
                   Learn More
                   <svg
-                    className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                    className="w-3 sm:w-4 h-3 sm:h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -336,7 +346,7 @@ const ArifMotorsLanding = () => {
 
             {/* Appliance Spare Parts */}
             <div className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group">
-              <div className="h-48 bg-gradient-to-br from-red-100 to-red-200 flex items-center justify-center relative overflow-hidden">
+              <div className="h-40 sm:h-48 bg-gradient-to-br from-red-100 to-red-200 flex items-center justify-center relative overflow-hidden">
                 <img
                   src="/4.jpg"
                   alt="Appliance Spare Parts"
@@ -344,23 +354,23 @@ const ArifMotorsLanding = () => {
                 />
                 <div className="absolute inset-0 bg-red-800/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-red-700 mb-3 flex items-center">
-                  <div className="w-6 h-6 bg-white rounded flex items-center justify-center mr-2">
-                    <Info className="w-4 h-4 text-red-700" />
+              <div className="p-4 sm:p-6">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-red-700 mb-3 flex items-center">
+                  <div className="w-5 sm:w-6 h-5 sm:h-6 bg-white rounded flex items-center justify-center mr-2">
+                    <Info className="w-3 sm:w-4 h-3 sm:h-4 text-red-700" />
                   </div>
-                  Spare Parts in Stock
+                  Spare Parts
                 </h3>
-                <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                <p className="text-gray-700 text-xs sm:text-sm leading-relaxed mb-4">
                   Compatible replacement parts for household appliances, tested for quality and durability.
                 </p>
                 <Link
                   href="/electrical-supplies#spare-parts"
-                  className="flex items-center text-red-700 font-semibold text-sm hover:text-red-800 transition-colors duration-300 group touch-manipulation"
+                  className="flex items-center text-red-700 font-semibold text-xs sm:text-sm hover:text-red-800 transition-colors duration-300 group touch-manipulation"
                 >
                   Learn More
                   <svg
-                    className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                    className="w-3 sm:w-4 h-3 sm:h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -373,254 +383,252 @@ const ArifMotorsLanding = () => {
           </div>
 
           {/* Service Features */}
-          <div className="bg-white rounded-3xl shadow-lg p-8">
-            <div className="text-center mb-8">
-              <h3 className="text-3xl font-bold text-blue-800 mb-4">Why Choose Our Services?</h3>
-              <p className="text-gray-600 text-lg">Quality, reliability, and expertise you can trust</p>
+          <div className="bg-white rounded-3xl shadow-lg p-4 sm:p-6 md:p-8">
+            <div className="text-center mb-6 sm:mb-8">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-800 mb-4">Why Choose Our Services?</h3>
+              <p className="text-sm sm:text-base md:text-lg text-gray-600">Quality, reliability, and expertise you can trust</p>
             </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center p-8 rounded-2xl hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 bg-gradient-to-b from-white to-blue-50">
-                <div className="w-20 h-20 bg-gradient-to-r from-blue-800 to-blue-900 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <Wrench className="w-10 h-10 text-white" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+              <div className="text-center p-4 sm:p-6 md:p-8 rounded-2xl hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 bg-gradient-to-b from-white to-blue-50">
+                <div className="w-16 sm:w-20 h-16 sm:h-20 bg-gradient-to-r from-blue-800 to-blue-900 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Wrench className="w-8 sm:w-10 h-8 sm:h-10 text-white" />
                 </div>
-                <h4 className="text-2xl font-bold text-gray-900 mb-4">Expert Repairs</h4>
-                <p className="text-gray-600 text-lg leading-relaxed">Professional motor rewinding and electrical repairs with precision</p>
+                <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4">Expert Repairs</h4>
+                <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">Professional motor rewinding and electrical repairs with precision</p>
               </div>
 
-              <div className="text-center p-8 rounded-2xl hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 bg-gradient-to-b from-white to-red-50">
-                <div className="w-20 h-20 bg-gradient-to-r from-red-700 to-red-800 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <Package className="w-10 h-10 text-white" />
+              <div className="text-center p-4 sm:p-6 md:p-8 rounded-2xl hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 bg-gradient-to-b from-white to-red-50">
+                <div className="w-16 sm:w-20 h-16 sm:h-20 bg-gradient-to-r from-red-700 to-red-800 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Package className="w-8 sm:w-10 h-8 sm:h-10 text-white" />
                 </div>
-                <h4 className="text-2xl font-bold text-gray-900 mb-4">Quality Supplies</h4>
-                <p className="text-gray-600 text-lg leading-relaxed">Wide range of electrical components and motor parts in stock</p>
+                <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4">Quality Supplies</h4>
+                <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">Wide range of electrical components and motor parts in stock</p>
               </div>
 
-              <div className="text-center p-8 rounded-2xl hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 bg-gradient-to-b from-white to-blue-50">
-                <div className="w-20 h-20 bg-gradient-to-r from-blue-800 to-blue-900 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <Info className="w-10 h-10 text-white" />
+              <div className="text-center p-4 sm:p-6 md:p-8 rounded-2xl hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 bg-gradient-to-b from-white to-blue-50">
+                <div className="w-16 sm:w-20 h-16 sm:h-20 bg-gradient-to-r from-blue-800 to-blue-900 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Info className="w-8 sm:w-10 h-8 sm:h-10 text-white" />
                 </div>
-                <h4 className="text-2xl font-bold text-gray-900 mb-4">Trusted Experience</h4>
-                <p className="text-gray-600 text-lg leading-relaxed">25+ years of proven expertise serving hundreds of satisfied customers</p>
+                <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4">Trusted Experience</h4>
+                <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">29+ years of proven expertise serving hundreds of satisfied customers</p>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Customer Testimonials Section */}
-      <div className="bg-gradient-to-b from-gray-50 to-white py-20">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="bg-gradient-to-b from-gray-50 to-white py-8 sm:py-12 lg:py-20 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center bg-gradient-to-r from-blue-50 to-red-50 rounded-full px-6 py-2 border border-blue-200 mb-6">
-              <span className="text-blue-700 text-sm font-semibold">What Our Customers Say</span>
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <div className="inline-flex items-center bg-gradient-to-r from-blue-50 to-red-50 rounded-full px-4 sm:px-6 py-2 border border-blue-200 mb-4 sm:mb-6">
+              <span className="text-blue-700 text-xs sm:text-sm font-semibold">What Our Customers Say</span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-blue-800 mb-6 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-blue-800 mb-4 sm:mb-6 tracking-tight">
               Trusted by Hundreds of Satisfied Customers
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Over 25 years of excellence in electrical motor services has earned us the trust and loyalty of our valued customers
+            <p className="text-sm sm:text-base md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Over 29 years of excellence in electrical motor services has earned us the trust and loyalty of our valued customers
             </p>
           </div>
 
           {/* Testimonials Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {/* Testimonial 1 */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 border border-gray-100">
-              <div className="flex items-center mb-6">
+            <div className="bg-white p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 border border-gray-100">
+              <div className="flex items-center mb-4 sm:mb-6">
                 <div className="flex text-yellow-400">
                   {[1, 2, 3, 4, 5].map((star) => (
-                    <span key={star} className="text-xl">★</span>
+                    <span key={star} className="text-base sm:text-xl">★</span>
                   ))}
                 </div>
               </div>
-              <p className="text-gray-700 text-lg leading-relaxed mb-6 italic">
-                &quot;Arif Motors saved my business when our main motor failed. Their quick response and expert rewinding service got us back up and running in no time. Highly professional!&quot;
+              <p className="text-gray-700 text-xs sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6 italic">
+                "Arif Motors saved my business when our main motor failed. Their quick response and expert rewinding service got us back up and running in no time. Highly professional!"
               </p>
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-800 to-blue-900 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-white font-bold text-lg">MR</span>
+                <div className="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-r from-blue-800 to-blue-900 rounded-full flex items-center justify-center mr-3 sm:mr-4">
+                  <span className="text-white font-bold text-base sm:text-lg">MR</span>
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">Muhammad Rahman</div>
-                  <div className="text-gray-600 text-sm">Factory Owner</div>
+                  <div className="font-semibold text-gray-900 text-sm sm:text-base">Muhammad Rahman</div>
+                  <div className="text-gray-600 text-xs sm:text-sm">Factory Owner</div>
                 </div>
               </div>
             </div>
 
             {/* Testimonial 2 */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 border border-gray-100">
-              <div className="flex items-center mb-6">
+            <div className="bg-white p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 border border-gray-100">
+              <div className="flex items-center mb-4 sm:mb-6">
                 <div className="flex text-yellow-400">
                   {[1, 2, 3, 4, 5].map((star) => (
-                    <span key={star} className="text-xl">★</span>
+                    <span key={star} className="text-base sm:text-xl">★</span>
                   ))}
                 </div>
               </div>
-              <p className="text-gray-700 text-lg leading-relaxed mb-6 italic">
-                &quot;Been coming here for over 10 years. They have the best electrical supplies in town and their prices are very reasonable. The staff is knowledgeable and helpful.&quot;
+              <p className="text-gray-700 text-xs sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6 italic">
+                "Been coming here for over 10 years. They have the best electrical supplies in town and their prices are very reasonable. The staff is knowledgeable and helpful."
               </p>
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-gradient-to-r from-red-7
-
-00 to-red-800 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-white font-bold text-lg">AS</span>
+                <div className="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-r from-red-700 to-red-800 rounded-full flex items-center justify-center mr-3 sm:mr-4">
+                  <span className="text-white font-bold text-base sm:text-lg">AS</span>
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">Ahmed Santos</div>
-                  <div className="text-gray-600 text-sm">Electrical Contractor</div>
+                  <div className="font-semibold text-gray-900 text-sm sm:text-base">Ahmed Santos</div>
+                  <div className="text-gray-600 text-xs sm:text-sm">Electrical Contractor</div>
                 </div>
               </div>
             </div>
 
             {/* Testimonial 3 */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 border border-gray-100">
-              <div className="flex items-center mb-6">
+            <div className="bg-white p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 border border-gray-100">
+              <div className="flex items-center mb-4 sm:mb-6">
                 <div className="flex text-yellow-400">
                   {[1, 2, 3, 4, 5].map((star) => (
-                    <span key={star} className="text-xl">★</span>
+                    <span key={star} className="text-base sm:text-xl">★</span>
                   ))}
                 </div>
               </div>
-              <p className="text-gray-700 text-lg leading-relaxed mb-6 italic">
-                &quot;Excellent service! They diagnosed and fixed our water pump motor perfectly. The quality of work is outstanding and they stand behind their repairs.&quot;
+              <p className="text-gray-700 text-xs sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6 italic">
+                "Excellent service! They diagnosed and fixed our water pump motor perfectly. The quality of work is outstanding and they stand behind their repairs."
               </p>
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-800 to-blue-900 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-white font-bold text-lg">JD</span>
+                <div className="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-r from-blue-800 to-blue-900 rounded-full flex items-center justify-center mr-3 sm:mr-4">
+                  <span className="text-white font-bold text-base sm:text-lg">JD</span>
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">Jose Dela Cruz</div>
-                  <div className="text-gray-600 text-sm">Homeowner</div>
+                  <div className="font-semibold text-gray-900 text-sm sm:text-base">Jose Dela Cruz</div>
+                  <div className="text-gray-600 text-xs sm:text-sm">Homeowner</div>
                 </div>
               </div>
             </div>
 
             {/* Testimonial 4 */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 border border-gray-100">
-              <div className="flex items-center mb-6">
+            <div className="bg-white p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 border border-gray-100">
+              <div className="flex items-center mb-4 sm:mb-6">
                 <div className="flex text-yellow-400">
                   {[1, 2, 3, 4, 5].map((star) => (
-                    <span key={star} className="text-xl">★</span>
+                    <span key={star} className="text-base sm:text-xl">★</span>
                   ))}
                 </div>
               </div>
-              <p className="text-gray-700 text-lg leading-relaxed mb-6 italic">
-                &quot;Fast and reliable service. When our industrial motor broke down, they had it fixed within 2 days. Their expertise in motor rewinding is unmatched.&quot;
+              <p className="text-gray-700 text-xs sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6 italic">
+                "Fast and reliable service. When our industrial motor broke down, they had it fixed within 2 days. Their expertise in motor rewinding is unmatched."
               </p>
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-gradient-to-r from-red-700 to-red-800 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-white font-bold text-lg">MC</span>
+                <div className="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-r from-red-700 to-red-800 rounded-full flex items-center justify-center mr-3 sm:mr-4">
+                  <span className="text-white font-bold text-base sm:text-lg">MC</span>
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">Maria Cruz</div>
-                  <div className="text-gray-600 text-sm">Manufacturing Manager</div>
+                  <div className="font-semibold text-gray-900 text-sm sm:text-base">Maria Cruz</div>
+                  <div className="text-gray-600 text-xs sm:text-sm">Manufacturing Manager</div>
                 </div>
               </div>
             </div>
 
             {/* Testimonial 5 */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 border border-gray-100">
-              <div className="flex items-center mb-6">
+            <div className="bg-white p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 border border-gray-100">
+              <div className="flex items-center mb-4 sm:mb-6">
                 <div className="flex text-yellow-400">
                   {[1, 2, 3, 4, 5].map((star) => (
-                    <span key={star} className="text-xl">★</span>
+                    <span key={star} className="text-base sm:text-xl">★</span>
                   ))}
                 </div>
               </div>
-              <p className="text-gray-700 text-lg leading-relaxed mb-6 italic">
-                &quot;Great selection of electrical parts and very competitive prices. The owner is honest and provides good advice on which parts to buy for specific applications.&quot;
+              <p className="text-gray-700 text-xs sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6 italic">
+                "Great selection of electrical parts and very competitive prices. The owner is honest and provides good advice on which parts to buy for specific applications."
               </p>
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-800 to-blue-900 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-white font-bold text-lg">RL</span>
+                <div className="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-r from-blue-800 to-blue-900 rounded-full flex items-center justify-center mr-3 sm:mr-4">
+                  <span className="text-white font-bold text-base sm:text-lg">RL</span>
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">Roberto Luna</div>
-                  <div className="text-gray-600 text-sm">Maintenance Technician</div>
+                  <div className="font-semibold text-gray-900 text-sm sm:text-base">Roberto Luna</div>
+                  <div className="text-gray-600 text-xs sm:text-sm">Maintenance Technician</div>
                 </div>
               </div>
             </div>
 
             {/* Testimonial 6 */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 border border-gray-100">
-              <div className="flex items-center mb-6">
+            <div className="bg-white p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 border border-gray-100">
+              <div className="flex items-center mb-4 sm:mb-6">
                 <div className="flex text-yellow-400">
                   {[1, 2, 3, 4, 5].map((star) => (
-                    <span key={star} className="text-xl">★</span>
+                    <span key={star} className="text-base sm:text-xl">★</span>
                   ))}
                 </div>
               </div>
-              <p className="text-gray-700 text-lg leading-relaxed mb-6 italic">
-                &quot;They&apos;ve been serving our family business for years. Always dependable, fair pricing, and quality workmanship. Highly recommend for any electrical motor needs.&quot;
+              <p className="text-gray-700 text-xs sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6 italic">
+                "They've been serving our family business for years. Always dependable, fair pricing, and quality workmanship. Highly recommend for any electrical motor needs."
               </p>
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-gradient-to-r from-red-700 to-red-800 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-white font-bold text-lg">TP</span>
+                <div className="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-r from-red-700 to-red-800 rounded-full flex items-center justify-center mr-3 sm:mr-4">
+                  <span className="text-white font-bold text-base sm:text-lg">TP</span>
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">Teresa Perez</div>
-                  <div className="text-gray-600 text-sm">Business Owner</div>
+                  <div className="font-semibold text-gray-900 text-sm sm:text-base">Teresa Perez</div>
+                  <div className="text-gray-600 text-xs sm:text-sm">Business Owner</div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Trust Indicators */}
-          <div className="mt-16 text-center">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+          <div className="mt-8 sm:mt-12 lg:mt-16 text-center">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 max-w-4xl mx-auto">
               <div className="group">
-                <div className="text-3xl font-bold text-blue-800 mb-2 group-hover:scale-110 transition-transform duration-300">4.9/5</div>
-                <div className="text-gray-600 font-medium text-sm">Customer Rating</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-800 mb-2 group-hover:scale-110 transition-transform duration-300">4.9/5</div>
+                <div className="text-gray-600 font-medium text-xs sm:text-sm">Customer Rating</div>
               </div>
               <div className="group">
-                <div className="text-3xl font-bold text-red-700 mb-2 group-hover:scale-110 transition-transform duration-300">98%</div>
-                <div className="text-gray-600 font-medium text-sm">Satisfaction Rate</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-red-700 mb-2 group-hover:scale-110 transition-transform duration-300">98%</div>
+                <div className="text-gray-600 font-medium text-xs sm:text-sm">Satisfaction Rate</div>
               </div>
               <div className="group">
-                <div className="text-3xl font-bold text-blue-800 mb-2 group-hover:scale-110 transition-transform duration-300">500+</div>
-                <div className="text-gray-600 font-medium text-sm">Happy Customers</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-800 mb-2 group-hover:scale-110 transition-transform duration-300">500+</div>
+                <div className="text-gray-600 font-medium text-xs sm:text-sm">Happy Customers</div>
               </div>
               <div className="group">
-                <div className="text-3xl font-bold text-red-700 mb-2 group-hover:scale-110 transition-transform duration-300">25+</div>
-                <div className="text-gray-600 font-medium text-sm">Years Trusted</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-red-700 mb-2 group-hover:scale-110 transition-transform duration-300">29+</div>
+                <div className="text-gray-600 font-medium text-xs sm:text-sm">Years Trusted</div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Footer Section */}
-      <footer className="bg-gradient-to-b from-blue-900 to-blue-950 text-white">
-        <div className="max-w-7xl mx-auto px-4 py-16">
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12">
+      <footer className="bg-gradient-to-b from-blue-900 to-blue-950 text-white w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
             {/* Company Info */}
             <div className="lg:col-span-1">
               <div className="mb-6">
-                <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-4 tracking-tight">
                   ARIF MOTORS ELECTRICAL
                 </h3>
-                <p className="text-blue-200 leading-relaxed text-lg">
-                  Your trusted partner for electrical motor services and supplies since 1999. Quality, reliability, and expertise you can count on.
+                <p className="text-blue-200 leading-relaxed text-sm sm:text-base md:text-lg">
+                  Your trusted partner for electrical motor services and supplies since 1996. Quality, reliability, and expertise you can count on.
                 </p>
               </div>
               <div className="space-y-4">
                 <div className="flex items-center">
-                  <div className="w-10 h-10 bg-red-700 rounded-full flex items-center justify-center mr-3">
-                    <MapPin className="w-5 h-5 text-white" />
+                  <div className="w-8 sm:w-10 h-8 sm:h-10 bg-red-700 rounded-full flex items-center justify-center mr-3">
+                    <MapPin className="w-4 sm:w-5 h-4 sm:h-5 text-white" />
                   </div>
                   <div>
-                    <div className="font-semibold text-white">Main Branch</div>
-                    <div className="text-blue-200 text-sm">Darasa II, Tanauan City, Batangas</div>
+                    <div className="font-semibold text-white text-sm sm:text-base">Main Branch</div>
+                    <div className="text-blue-200 text-xs sm:text-sm">Darasa II, Tanauan City, Batangas</div>
                   </div>
                 </div>
                 <div className="flex items-center">
-                  <div className="w-10 h-10 bg-red-700 rounded-full flex items-center justify-center mr-3">
-                    <MapPin className="w-5 h-5 text-white" />
+                  <div className="w-8 sm:w-10 h-8 sm:h-10 bg-red-700 rounded-full flex items-center justify-center mr-3">
+                    <MapPin className="w-4 sm:w-5 h-4 sm:h-5 text-white" />
                   </div>
                   <div>
-                    <div className="font-semibold text-white">Second Branch</div>
-                    <div className="text-blue-200 text-sm">Tanauan City, Batangas</div>
+                    <div className="font-semibold text-white text-sm sm:text-base">Second Branch</div>
+                    <div className="text-blue-200 text-xs sm:text-sm">Tanauan City, Batangas</div>
                   </div>
                 </div>
               </div>
@@ -628,7 +636,7 @@ const ArifMotorsLanding = () => {
 
             {/* Services */}
             <div>
-              <h4 className="text-xl font-bold text-white mb-6">Our Services</h4>
+              <h4 className="text-base sm:text-lg md:text-xl font-bold text-white mb-6">Our Services</h4>
               <ul className="space-y-4">
                 <li>
                   <Link href="/services#motor-repair-section" className="text-blue-200 hover:text-white transition-colors duration-300 flex items-center group touch-manipulation">
@@ -671,7 +679,7 @@ const ArifMotorsLanding = () => {
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-xl font-bold text-white mb-6">Quick Links</h4>
+              <h4 className="text-base sm:text-lg md:text-xl font-bold text-white mb-6">Quick Links</h4>
               <ul className="space-y-4">
                 {navItems.map((item) => (
                   <li key={item.name}>
@@ -686,70 +694,67 @@ const ArifMotorsLanding = () => {
 
             {/* Contact Info */}
             <div>
-              <h4 className="text-xl font-bold text-white mb-6">Get In Touch</h4>
+              <h4 className="text-base sm:text-lg md:text-xl font-bold text-white mb-6">Get In Touch</h4>
               <div className="space-y-6">
                 <div className="flex items-center">
-                  <div className="w-10 h-10 bg-red-700 rounded-full flex items-center justify-center mr-3">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-8 sm:w-10 h-8 sm:h-10 bg-red-700 rounded-full flex items-center justify-center mr-3">
+                    <svg className="w-4 sm:w-5 h-4 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
                   </div>
                   <div>
-                    <div className="font-semibold text-white">Phone</div>
-                    <div className="text-blue-200">+63 949 573 8232</div>
+                    <div className="font-semibold text-white text-sm sm:text-base">Phone</div>
+                    <div className="text-blue-200 text-xs sm:text-sm">+63 949 573 8232</div>
                   </div>
                 </div>
-                
                 <div className="flex items-center">
-                  <div className="w-10 h-10 bg-red-700 rounded-full flex items-center justify-center mr-3">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-8 sm:w-10 h-8 sm:h-10 bg-red-700 rounded-full flex items-center justify-center mr-3">
+                    <svg className="w-4 sm:w-5 h-4 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </div>
                   <div>
-                    <div className="font-semibold text-white">Email</div>
-                    <div className="text-blue-200">arifmotorselectrical@gmail.com</div>
+                    <div className="font-semibold text-white text-sm sm:text-base">Email</div>
+                    <div className="text-blue-200 text-xs sm:text-sm">arifmotorselectrical@gmail.com</div>
                   </div>
                 </div>
-
                 <div className="flex items-start">
-                  <div className="w-10 h-10 bg-red-700 rounded-full flex items-center justify-center mr-3 mt-1">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-8 sm:w-10 h-8 sm:h-10 bg-red-700 rounded-full flex items-center justify-center mr-3 mt-1">
+                    <svg className="w-4 sm:w-5 h-4 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
                   <div>
-                    <div className="font-semibold text-white">Business Hours</div>
-                    <div className="text-blue-200 text-sm">
+                    <div className="font-semibold text-white text-sm sm:text-base">Business Hours</div>
+                    <div className="text-blue-200 text-xs sm:text-sm">
                       <div>Mon-Sat: 8:00 AM - 6:00 PM</div>
                       <div>Sunday: 8:00 AM - 1:00 PM</div>
                     </div>
                   </div>
                 </div>
               </div>
-
               {/* Social Media */}
-              <div className="mt-8">
-                <h5 className="font-semibold text-white mb-4">Follow Us</h5>
+              <div className="mt-6 sm:mt-8">
+                <h5 className="font-semibold text-white text-sm sm:text-base mb-4">Follow Us</h5>
                 <div className="flex space-x-4">
-                  <Link href="#" className="w-10 h-10 bg-blue-800 hover:bg-red-700 rounded-full flex items-center justify-center transition-colors duration-300 group touch-manipulation">
-                    <svg className="w-5 h-5 text-white group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                  <Link href="https://www.facebook.com/profile.php?id=100069031163344" className="w-8 sm:w-10 h-8 sm:h-10 bg-blue-800 hover:bg-red-700 rounded-full flex items-center justify-center transition-colors duration-300 group touch-manipulation">
+                    <svg className="w-4 sm:w-5 h-4 sm:h-5 text-white group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
                     </svg>
                   </Link>
-                  <Link href="#" className="w-10 h-10 bg-blue-800 hover:bg-red-700 rounded-full flex items-center justify-center transition-colors duration-300 group touch-manipulation">
-                    <svg className="w-5 h-5 text-white group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                  <Link href="https://www.instagram.com/arifmotors" className="w-8 sm:w-10 h-8 sm:h-10 bg-blue-800 hover:bg-red-700 rounded-full flex items-center justify-center transition-colors duration-300 group touch-manipulation">
+                    <svg className="w-4 sm:w-5 h-4 sm:h-5 text-white group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.148 3.227-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.849 0-3.205.012-3.584.069-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.058 1.644-.07 4.849-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                     </svg>
                   </Link>
-                  <Link href="#" className="w-10 h-10 bg-blue-800 hover:bg-red-700 rounded-full flex items-center justify-center transition-colors duration-300 group touch-manipulation">
-                    <svg className="w-5 h-5 text-white group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.197.232.225.435.166.671-.061.24-.198.772-.225.882-.402.154-.402.154-.925-.093C4.297 16.465 3.201 13.98 3.201 11.987c0-4.492 3.267-8.617 9.417-8.617 4.955 0 8.804 3.532 8.804 8.25 0 4.915-3.102 8.867-7.404 8.867-1.447 0-2.809-.753-3.273-1.646 0 0-.719 2.735-.892 3.402-.323 1.238-1.201 2.786-1.789 3.734C10.212 23.983 11.099 24 12.017 24c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
+                  <Link href="https://www.tiktok.com/@arifmotors" className="w-8 sm:w-10 h-8 sm:h-10 bg-blue-800 hover:bg-red-700 rounded-full flex items-center justify-center transition-colors duration-300 group touch-manipulation">
+                    <svg className="w-4 sm:w-5 h-4 sm:h-5 text-white group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V0h-3.445v13.672a2.896 2.896 0 0 1-2.878 2.876 2.897 2.897 0 0 1-2.876-2.876 2.897 2.897 0 0 1 2.876-2.877c.294 0 .58.042.855.122V6.656a6.338 6.338 0 0 0-6.315 6.315 6.338 6.338 0 0 0 6.315 6.316 6.338 6.338 0 0 0 6.315-6.316V8.279a8.233 8.233 0 0 0 4.921 1.658V6.514a4.782 4.782 0 0 1-1.998-.295z"/>
                     </svg>
                   </Link>
-                  <Link href="#" className="w-10 h-10 bg-blue-800 hover:bg-red-700 rounded-full flex items-center justify-center transition-colors duration-300 group touch-manipulation">
-                    <svg className="w-5 h-5 text-white group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  <Link href="mailto:arifmotorselectrical@gmail.com" className="w-8 sm:w-10 h-8 sm:h-10 bg-blue-800 hover:bg-red-700 rounded-full flex items-center justify-center transition-colors duration-300 group touch-manipulation">
+                    <svg className="w-4 sm:w-5 h-4 sm:h-5 text-white group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </Link>
                 </div>
@@ -758,20 +763,20 @@ const ArifMotorsLanding = () => {
           </div>
 
           {/* Bottom Footer */}
-          <div className="border-t border-blue-800 mt-16 pt-8">
+          <div className="border-t border-blue-800 mt-8 sm:mt-12 lg:mt-16 pt-6 sm:pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
-              <div className="text-blue-200 text-sm mb-4 md:mb-0">
+              <div className="text-blue-200 text-xs sm:text-sm mb-4 md:mb-0">
                 © 2025 Arif Motors Electrical. All rights reserved.
               </div>
-              <div className="flex space-x-6 text-sm">
+              <div className="flex space-x-4 sm:space-x-6 text-xs sm:text-sm">
                 <Link href="#" className="text-blue-200 hover:text-white transition-colors duration-300 touch-manipulation">Privacy Policy</Link>
                 <Link href="#" className="text-blue-200 hover:text-white transition-colors duration-300 touch-manipulation">Terms of Service</Link>
                 <Link href="#" className="text-blue-200 hover:text-white transition-colors duration-300 touch-manipulation">Warranty Info</Link>
               </div>
             </div>
-            <div className="text-center mt-6 pt-6 border-t border-blue-800">
-              <div className="text-blue-200 text-sm">
-                Proudly serving Tanauan, Batangas and surrounding areas since 1999
+            <div className="text-center mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-blue-800">
+              <div className="text-blue-200 text-xs sm:text-sm">
+                Proudly serving Tanauan, Batangas and surrounding areas since 1996
               </div>
               <div className="flex justify-center items-center mt-3 space-x-2">
                 <div className="w-2 h-2 bg-red-700 rounded-full animate-pulse"></div>
