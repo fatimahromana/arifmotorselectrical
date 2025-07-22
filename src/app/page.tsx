@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Zap, Wrench, Package, Info, MapPin, Menu, X } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const ArifMotorsLanding = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -27,7 +28,7 @@ const ArifMotorsLanding = () => {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [wordData.length]);
 
   const dropdownItems = [
     { icon: Zap, text: 'Understanding Your Parts', color: 'text-blue-800', href: '/parts' },
@@ -153,7 +154,7 @@ const ArifMotorsLanding = () => {
                 className="w-full bg-gradient-to-r from-blue-800 to-blue-900 text-white px-8 sm:px-8 py-5 sm:py-5 rounded-2xl font-semibold text-lg sm:text-lg flex items-center justify-between hover:from-blue-900 hover:to-blue-950 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 active:translate-y-0 touch-manipulation"
                 aria-expanded={isDropdownOpen}
               >
-                Find What You're Looking For
+                Find What You&apos;re Looking For
                 <ChevronDown
                   className={`w-6 sm:w-6 h-6 sm:h-6 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
                 />
@@ -202,10 +203,13 @@ const ArifMotorsLanding = () => {
 
           {/* Right Image - hidden on mobile */}
           <div className="relative hidden md:block">
-            <img
+            <Image
               src="/arif.png"
               alt="Electrical Services"
+              width={500}
+              height={400}
               className="w-full h-auto rounded-3xl object-cover max-h-[400px] sm:max-h-[500px]"
+              priority
             />
             {/* Floating Elements */}
             <div className="absolute -top-4 sm:-top-6 -left-4 sm:-left-6 w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-r from-red-700 to-red-800 rounded-full animate-pulse shadow-lg"></div>
@@ -236,9 +240,11 @@ const ArifMotorsLanding = () => {
             {/* Motor Rewinding */}
             <div className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group">
               <div className="h-40 sm:h-48 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center relative overflow-hidden">
-                <img
+                <Image
                   src="/1.jpg"
                   alt="Motor Rewinding Service"
+                  width={300}
+                  height={200}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-blue-800/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -273,9 +279,11 @@ const ArifMotorsLanding = () => {
             {/* Washing Machine & Fan Repairs */}
             <div className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group">
               <div className="h-40 sm:h-48 bg-gradient-to-br from-red-100 to-red-200 flex items-center justify-center relative overflow-hidden">
-                <img
+                <Image
                   src="/2.jpg"
                   alt="Appliance Repair Service"
+                  width={300}
+                  height={200}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-red-800/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -310,9 +318,11 @@ const ArifMotorsLanding = () => {
             {/* Electrical Supply Sales */}
             <div className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group">
               <div className="h-40 sm:h-48 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center relative overflow-hidden">
-                <img
+                <Image
                   src="/3.jpg"
                   alt="Electrical Supplies"
+                  width={300}
+                  height={200}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-blue-800/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -347,9 +357,11 @@ const ArifMotorsLanding = () => {
             {/* Appliance Spare Parts */}
             <div className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group">
               <div className="h-40 sm:h-48 bg-gradient-to-br from-red-100 to-red-200 flex items-center justify-center relative overflow-hidden">
-                <img
+                <Image
                   src="/4.jpg"
                   alt="Appliance Spare Parts"
+                  width={300}
+                  height={200}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-red-800/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -445,7 +457,7 @@ const ArifMotorsLanding = () => {
                 </div>
               </div>
               <p className="text-gray-700 text-xs sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6 italic">
-                "Arif Motors saved my business when our main motor failed. Their quick response and expert rewinding service got us back up and running in no time. Highly professional!"
+                &ldquo;Arif Motors saved my business when our main motor failed. Their quick response and expert rewinding service got us back up and running in no time. Highly professional!&rdquo;
               </p>
               <div className="flex items-center">
                 <div className="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-r from-blue-800 to-blue-900 rounded-full flex items-center justify-center mr-3 sm:mr-4">
@@ -468,7 +480,7 @@ const ArifMotorsLanding = () => {
                 </div>
               </div>
               <p className="text-gray-700 text-xs sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6 italic">
-                "Been coming here for over 10 years. They have the best electrical supplies in town and their prices are very reasonable. The staff is knowledgeable and helpful."
+                &ldquo;Been coming here for over 10 years. They have the best electrical supplies in town and their prices are very reasonable. The staff is knowledgeable and helpful.&rdquo;
               </p>
               <div className="flex items-center">
                 <div className="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-r from-red-700 to-red-800 rounded-full flex items-center justify-center mr-3 sm:mr-4">
@@ -491,7 +503,7 @@ const ArifMotorsLanding = () => {
                 </div>
               </div>
               <p className="text-gray-700 text-xs sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6 italic">
-                "Excellent service! They diagnosed and fixed our water pump motor perfectly. The quality of work is outstanding and they stand behind their repairs."
+                &ldquo;Excellent service! They diagnosed and fixed our water pump motor perfectly. The quality of work is outstanding and they stand behind their repairs.&rdquo;
               </p>
               <div className="flex items-center">
                 <div className="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-r from-blue-800 to-blue-900 rounded-full flex items-center justify-center mr-3 sm:mr-4">
@@ -514,7 +526,7 @@ const ArifMotorsLanding = () => {
                 </div>
               </div>
               <p className="text-gray-700 text-xs sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6 italic">
-                "Fast and reliable service. When our industrial motor broke down, they had it fixed within 2 days. Their expertise in motor rewinding is unmatched."
+                &ldquo;Fast and reliable service. When our industrial motor broke down, they had it fixed within 2 days. Their expertise in motor rewinding is unmatched.&rdquo;
               </p>
               <div className="flex items-center">
                 <div className="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-r from-red-700 to-red-800 rounded-full flex items-center justify-center mr-3 sm:mr-4">
@@ -537,7 +549,7 @@ const ArifMotorsLanding = () => {
                 </div>
               </div>
               <p className="text-gray-700 text-xs sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6 italic">
-                "Great selection of electrical parts and very competitive prices. The owner is honest and provides good advice on which parts to buy for specific applications."
+                &ldquo;Great selection of electrical parts and very competitive prices. The owner is honest and provides good advice on which parts to buy for specific applications.&rdquo;
               </p>
               <div className="flex items-center">
                 <div className="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-r from-blue-800 to-blue-900 rounded-full flex items-center justify-center mr-3 sm:mr-4">
@@ -560,7 +572,7 @@ const ArifMotorsLanding = () => {
                 </div>
               </div>
               <p className="text-gray-700 text-xs sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6 italic">
-                "They've been serving our family business for years. Always dependable, fair pricing, and quality workmanship. Highly recommend for any electrical motor needs."
+                &ldquo;They&apos;ve been serving our family business for years. Always dependable, fair pricing, and quality workmanship. Highly recommend for any electrical motor needs.&rdquo;
               </p>
               <div className="flex items-center">
                 <div className="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-r from-red-700 to-red-800 rounded-full flex items-center justify-center mr-3 sm:mr-4">

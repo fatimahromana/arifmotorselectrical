@@ -9,7 +9,10 @@ type BranchKey = 'main' | 'second';
 interface Branch {
   name: string;
   address: string;
-  hours: string;
+  hours: {
+    weekday: string;
+    sunday: string;
+  };
   mapEmbed: string;
   googleMapsLink: string;
 }
@@ -31,15 +34,21 @@ const ContactLocationPage = () => {
     main: {
       name: 'Main Branch',
       address: 'Darasa II, Tanauan City, Batangas — in front of BMEG Darasa.',
-      hours: '8:00 AM – 6:00 PM',
+      hours: {
+        weekday: '8:00 AM – 6:00 PM',
+        sunday: '8:00 AM – 1:00 PM',
+      },
       mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3870.2890786234907!2d121.15156767407002!3d14.060099490083115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd6f3b596dc885%3A0xaf689dd4a8f9b9bb!2sArif%20Motors%20Electrical!5e0!3m2!1sen!2sph!4v1753165886191!5m2!1sen!2sph',
       googleMapsLink: 'https://maps.app.goo.gl/WAfCBNQY3Hm98cjf8'
     },
     second: {
       name: 'Second Branch',
       address: 'Beside BPI (Bank of the Philippine Islands), Tanauan City, Batangas.',
-      hours: '8:00 AM – 5:00 PM',
-      mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3869.910818438692!2d121.14764617407043!3d14.082441589554584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd6f5d0f440b77%3A0x206093884d1f041f!2sArif%20Motor\'s%20Electrical%20Supply!5e0!3m2!1sen!2sph!4v1753165835623!5m2!1sen!2sph',
+      hours: {
+        weekday: '8:00 AM – 5:00 PM',
+        sunday: '8:00 AM – 1:00 PM',
+      },
+      mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3869.910818438692!2d121.14764617407043!3d14.082441589554584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd6f5d0f440b77%3A0x206093884d1f041f!2sArif%20Motor&apos;s%20Electrical%20Supply!5e0!3m2!1sen!2sph!4v1753165835623!5m2!1sen!2sph',
       googleMapsLink: 'https://maps.app.goo.gl/qrYKF9xJkihvz2rt7'
     }
   };
@@ -110,7 +119,7 @@ const ContactLocationPage = () => {
             Contact & Location
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
-            Visit us at either of our convenient locations in Tanauan City, Batangas. We're here to help with all your electrical motor needs.
+            Visit us at either of our convenient locations in Tanauan City, Batangas. We&apos;re here to help with all your electrical motor needs.
           </p>
         </div>
       </div>
@@ -139,7 +148,7 @@ const ContactLocationPage = () => {
                       <p className="text-gray-700 text-base sm:text-lg mb-3 break-words">{branches.main.address}</p>
                       <div className="flex items-center text-gray-600 mb-4 flex-wrap justify-center sm:justify-start">
                         <Clock className="w-4 h-4 sm:w-5 sm:h-5 mr-4 sm:mr-6 text-red-700 flex-shrink-0" />
-                        <span className="font-medium text-sm sm:text-base">Open: {branches.main.hours}</span>
+                        <span className="font-medium text-sm sm:text-base">Open: {branches.main.hours.weekday}</span>
                       </div>
                       <a
                         href={branches.main.googleMapsLink}
@@ -167,7 +176,7 @@ const ContactLocationPage = () => {
                       <p className="text-gray-700 text-base sm:text-lg mb-3 break-words">{branches.second.address}</p>
                       <div className="flex items-center text-gray-600 mb-4 flex-wrap justify-center sm:justify-start">
                         <Clock className="w-4 h-4 sm:w-5 sm:h-5 mr-4 sm:mr-6 text-blue-800 flex-shrink-0" />
-                        <span className="font-medium text-sm sm:text-base">Open: {branches.second.hours}</span>
+                        <span className="font-medium text-sm sm:text-base">Open: {branches.second.hours.weekday}</span>
                       </div>
                       <a
                         href={branches.second.googleMapsLink}
@@ -228,7 +237,7 @@ const ContactLocationPage = () => {
                   <div className="flex-1 min-w-0">
                     <div className="font-semibold text-gray-900 text-base sm:text-lg">Facebook</div>
                     <a 
-                      href="https://facebook.com/arifmotorselectrical" 
+                      href="https://r.search.yahoo.com/_ylt=Awr1QdsvqH9oFwIABNOzRwx.;_ylu=Y29sbwNzZzMEcG9zAzEEdnRpZAMEc2VjA3Ny/RV=2/RE=1754406192/RO=10/RU=https%3a%2f%2fwww.facebook.com%2fprofile.php%2f%3fid%3d100069031163344/RK=2/RS=8gBIB1btuERVwtTxgzGpUbjra8I-" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:text-blue-700 transition-colors duration-300 text-lg sm:text-xl font-medium break-words"
@@ -255,21 +264,13 @@ const ContactLocationPage = () => {
                 <div className="bg-white rounded-xl sm:rounded-2xl p-1.5 sm:p-2 shadow-lg border border-gray-200 inline-flex w-full sm:w-auto">
                   <button
                     onClick={() => setSelectedBranch('main')}
-                    className={`flex-1 sm:flex-initial px-3 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold transition-all duration-300 text-xs sm:text-base ${
-                      selectedBranch === 'main'
-                        ? 'bg-gradient-to-r from-blue-800 to-blue-900 text-white shadow-lg'
-                        : 'text-blue-800 hover:bg-blue-50'
-                    }`}
+                    className={`flex-1 sm:flex-initial px-3 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold transition-all duration-300 text-xs sm:text-base ${selectedBranch === 'main' ? 'bg-gradient-to-r from-blue-800 to-blue-900 text-white shadow-lg' : 'text-blue-800 hover:bg-blue-50'}`}
                   >
                     Main Branch
                   </button>
                   <button
                     onClick={() => setSelectedBranch('second')}
-                    className={`flex-1 sm:flex-initial px-3 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold transition-all duration-300 text-xs sm:text-base ${
-                      selectedBranch === 'second'
-                        ? 'bg-gradient-to-r from-red-700 to-red-800 text-white shadow-lg'
-                        : 'text-red-700 hover:bg-red-50'
-                    }`}
+                    className={`flex-1 sm:flex-initial px-3 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold transition-all duration-300 text-xs sm:text-base ${selectedBranch === 'second' ? 'bg-gradient-to-r from-red-700 to-red-800 text-white shadow-lg' : 'text-red-700 hover:bg-red-50'}`}
                   >
                     Second Branch
                   </button>
@@ -298,6 +299,7 @@ const ContactLocationPage = () => {
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     className="transition-all duration-500 sm:h-[400px]"
+                    title={`Map of ${branches[selectedBranch].name}`}
                   ></iframe>
                   
                   {/* Map Overlay for Better UX */}
@@ -341,7 +343,7 @@ const ContactLocationPage = () => {
         <div className="max-w-7xl mx-auto px-3 sm:px-4">
           <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-800 mb-4 sm:mb-6">Business Hours</h2>
-            <p className="text-lg sm:text-xl text-gray-600">We're here to serve you during these hours</p>
+            <p className="text-lg sm:text-xl text-gray-600">We&apos;re here to serve you during these hours</p>
           </div>
           
           <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
@@ -355,11 +357,11 @@ const ContactLocationPage = () => {
                 <div className="space-y-2 sm:space-y-3 text-gray-700">
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-1 sm:space-y-0">
                     <span className="font-medium text-sm sm:text-base">Monday - Saturday:</span>
-                    <span className="text-blue-800 font-semibold text-sm sm:text-base">8:00 AM - 6:00 PM</span>
+                    <span className="text-blue-800 font-semibold text-sm sm:text-base">{branches.main.hours.weekday}</span>
                   </div>
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-1 sm:space-y-0">
                     <span className="font-medium text-sm sm:text-base">Sunday:</span>
-                    <span className="text-blue-800 font-semibold text-sm sm:text-base">8:00 AM - 1:00 PM</span>
+                    <span className="text-blue-800 font-semibold text-sm sm:text-base">{branches.main.hours.sunday}</span>
                   </div>
                 </div>
               </div>
@@ -375,11 +377,11 @@ const ContactLocationPage = () => {
                 <div className="space-y-2 sm:space-y-3 text-gray-700">
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-1 sm:space-y-0">
                     <span className="font-medium text-sm sm:text-base">Monday - Saturday:</span>
-                    <span className="text-red-700 font-semibold text-sm sm:text-base">8:00 AM - 5:00 PM</span>
+                    <span className="text-red-700 font-semibold text-sm sm:text-base">{branches.second.hours.weekday}</span>
                   </div>
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-1 sm:space-y-0">
                     <span className="font-medium text-sm sm:text-base">Sunday:</span>
-                    <span className="text-red-700 font-semibold text-sm sm:text-base">8:00 AM - 1:00 PM</span>
+                    <span className="text-red-700 font-semibold text-sm sm:text-base">{branches.second.hours.sunday}</span>
                   </div>
                 </div>
               </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronDown, MapPin, Clock, Phone, Mail, MessageCircle, Menu, X, Zap, Users, Award, Target, Heart, Wrench, Star, CheckCircle } from 'lucide-react';
+import { ChevronDown, MapPin, Clock, Phone, Mail, Menu, X, Zap, Users, Award, Target, Heart, Wrench, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 
 const AboutUsPage = () => {
@@ -107,6 +107,7 @@ const AboutUsPage = () => {
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden text-gray-700 hover:text-blue-800 transition-colors duration-300 p-2 rounded-lg hover:bg-blue-50 touch-manipulation"
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           >
             {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
