@@ -598,7 +598,7 @@ const ArifMotorsLanding = () => {
                 <div className="text-gray-600 font-medium text-xs sm:text-sm">Satisfaction Rate</div>
               </div>
               <div className="group">
-                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-800 mb-2 group-hover:scale-110 transition-transform duration-300">500+</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-800 mb-2 group-hover:scale-110 transition-transform duration-300">1000+</div>
                 <div className="text-gray-600 font-medium text-xs sm:text-sm">Happy Customers</div>
               </div>
               <div className="group">
