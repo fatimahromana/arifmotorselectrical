@@ -41,17 +41,18 @@ const ContactLocationPage = () => {
       mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3870.2890786234907!2d121.15156767407002!3d14.060099490083115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd6f3b596dc885%3A0xaf689dd4a8f9b9bb!2sArif%20Motors%20Electrical!5e0!3m2!1sen!2sph!4v1753165886191!5m2!1sen!2sph',
       googleMapsLink: 'https://maps.app.goo.gl/WAfCBNQY3Hm98cjf8'
     },
-    second: {
-      name: 'Second Branch',
-      address: 'Beside BPI (Bank of the Philippine Islands), Tanauan City, Batangas.',
-      hours: {
-        weekday: '8:00 AM – 5:00 PM',
-        sunday: '8:00 AM – 1:00 PM',
-      },
-      mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3869.910818438692!2d121.14764617407043!3d14.082441589554584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd6f5d0f440b77%3A0x206093884d1f041f!2sArif%20Motor&apos;s%20Electrical%20Supply!5e0!3m2!1sen!2sph!4v1753165835623!5m2!1sen!2sph',
-      googleMapsLink: 'https://maps.app.goo.gl/qrYKF9xJkihvz2rt7'
-    }
-  };
+    
+  second: {
+    name: 'Second Branch',
+    address: 'Beside BPI Tanauan, F. Platon Street, Tanauan City, Batangas.',
+    hours: {
+      weekday: '8:00 AM – 5:00 PM',
+      sunday: '8:00 AM – 1:00 PM',
+    },
+    mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3870.0106!2d121.1500954!3d14.0826074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd6f5d0f440b77%3A0x206093884d1f041f!2sArif%20Motor%27s%20Electrical%20Supply!5e0!3m2!1sen!2sph!4v1755076998434!5m2!1sen!2sph',
+    googleMapsLink: 'https://maps.app.goo.gl/XZh5NWqV4tJ9ykuh9'
+  }
+};
 
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
